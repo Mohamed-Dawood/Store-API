@@ -37,17 +37,13 @@ export const getAllProducts = asyncWrapper(async (req, res) => {
       if (options.includes(field)) {
         queryObject[field] = { [operator]: Number(value) };
       }
-      console.log(filters);
     });
-    console.log(numericFilters);
   }
 
   // Sort
-  // const products = await Product.find(queryObject);
   let result = Product.find(queryObject);
 
   if (sort) {
-    // products = products.sort();
     const sortList = sort.split(',').join(' ');
     result = result.sort(sortList);
   } else {
